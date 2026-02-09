@@ -1,3 +1,5 @@
+let hintWarnings: String[];
+
 /**
 (?=.*[A-Z]) → pelo menos 1 letra maiúscula
 (?=.*\d) → pelo menos 1 número
@@ -5,7 +7,6 @@
 .{5,} → mínimo de 5 caracteres (ou seja, “mais de 4 letras”)
 */
 
-let password = "test";
 
 /**
  * 
@@ -43,7 +44,7 @@ export function hasAtleastFiveLetters(password: string): boolean {
     return /.{5,}/.test(password);
 }
 
-export function passwordTestCharge(teste: string): void {
+export function passwordTestCharge(teste: string): string {
     let errors: Object[] = []
 
     let upperCaseVerifier: string = hasUpperCase(teste) ? "Possui letra maiúscula" : "Não possui letra maiúscula";
@@ -51,5 +52,5 @@ export function passwordTestCharge(teste: string): void {
     let specialCharVerifier: string = hasAtleastOneSpecialChar(teste) ? "Possui um caractere especial" : "Não possui um caractere especial";
     let letterCountVerifier: string = hasAtleastFiveLetters(teste) ? "Possui no mín. 5 letras" : "Não possui no mín. 5 letras";
     
-    console.log("\n", upperCaseVerifier, "\n", numberVerifier, "\n", specialCharVerifier, "\n", letterCountVerifier)
+     return `${upperCaseVerifier} // ${numberVerifier} // ${specialCharVerifier} // ${letterCountVerifier}`
 }
