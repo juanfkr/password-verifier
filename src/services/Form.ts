@@ -3,22 +3,31 @@ import { createComponent } from "./Hint.js";
 
 // components
 const FORM_INPUT = document.querySelector("#inputName") as HTMLInputElement;
-const FORM_BUTTON = document.querySelector("#buttonSubmit") as HTMLButtonElement;
 
-const numbers: number[] = [1, 2, 3, 4];
+function getPassword(input: HTMLInputElement): string {
+    return input.value
+}
 
-FORM_BUTTON.addEventListener("click", (e) => {
-    e.preventDefault()
-    numbers.forEach((number) => {
+function insertComponents(warns: string[]) {
+    var n: number = 0;
+
+    warns.forEach((warn) => {
+        n++;
         createComponent({
+            id: `componentId-${n}`,
             element: "div",
-            text: `${number}`,
+            text: `${warn}`,
             attribute: {
                 type: "class",
-                value: "text-primary"
+                value: "text-danger text-center"
             },
             parentComponent: "#warning-list"
         })
     })
+}
 
+FORM_INPUT.addEventListener("input", (e) => {
+    e.preventDefault()
+
+    getPassword(FORM_INPUT)
 });
