@@ -1,5 +1,7 @@
 // imports
-import { createComponent } from "../services/Hint.js";
+import { createComponent } from "./Hint.js";
+import { validatePassword, PASSWORD_RULES } from "../model/Rules.js";
+import { updateUI } from "./HintUi.js";
 
 // components
 const FORM_INPUT = document.querySelector("#inputName") as HTMLInputElement;
@@ -8,18 +10,15 @@ function getPassword(input: HTMLInputElement): string {
     return input.value
 }
 
-function insertComponents(warns: string[]) {
-    var n: number = 0;
-
-    warns.forEach((warn) => {
-        n++;
+function renderRules() {
+    PASSWORD_RULES.forEach((rule) => {
         createComponent({
-            id: `componentId-${n}`,
+            id: rule.id,
             element: "div",
-            text: `${warn}`,
+            text: rule.text,
             attribute: {
                 type: "class",
-                value: "text-danger text-center"
+                value: "text-danger",
             },
             parentComponent: "#warning-list"
         })
@@ -29,5 +28,10 @@ function insertComponents(warns: string[]) {
 FORM_INPUT.addEventListener("input", (e) => {
     e.preventDefault()
 
-    getPassword(FORM_INPUT)
+    let password = getPassword(FORM_INPUT);
+    let results = validatePassword(password)
+    updateUI(results)
+    console.log(results)
 });
+
+renderRules()
