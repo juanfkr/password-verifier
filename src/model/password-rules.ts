@@ -5,11 +5,7 @@
 .{5,} → mínimo de 5 caracteres (ou seja, “mais de 4 letras”)
 */
 
-export interface PasswordRules {
-    id: string;
-    text: string;
-    test: (password: string) => boolean
-}
+import { PasswordRules } from "../interfaces/password-interface"
 
 export const PASSWORD_RULES: PasswordRules[] = [
     {
@@ -34,6 +30,11 @@ export const PASSWORD_RULES: PasswordRules[] = [
     },
 ]
 
+/**
+ * "esteira" de testes para cara regra de senha
+ * @param password 
+ * @returns array de objetos contendo cada regra e se ela foi validada como true/false
+ */
 export function validatePassword(password: string) {
     return PASSWORD_RULES.map((rule) => ({
         id: rule.id,

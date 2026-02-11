@@ -1,3 +1,5 @@
+import { PASSWORD_RULES } from "../model/password-rules.js";
+
 interface Component {
     id: string;
     element: string;
@@ -27,7 +29,27 @@ export function createComponent(component: Component): void {
     PARENT.append(HTML_COMPONENT);
 }
 
+/**
+ * @param component 
+ * @returns verifica se componente existe
+ */
 function componentExists(component: Component): boolean {
     return !!document.querySelector(`#${component.id}`)
 }
+
+// renderiza os componentes que exibição de regras
+(() => {
+    PASSWORD_RULES.forEach((rule) => {
+        createComponent({
+            id: rule.id,
+            element: "div",
+            text: rule.text,
+            attribute: {
+                type: "class",
+                value: "text-danger",
+            },
+            parentComponent: "#warning-list"
+        })
+    })
+})();
 

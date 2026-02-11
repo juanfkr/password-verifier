@@ -1,12 +1,7 @@
-
-interface PasswordRuleResult {
-  id: string;
-  text: string;
-  isValid: boolean;
-}
+import { PasswordRuleResult } from "../interfaces/password-interface";
 
 
-export function updateUI(results: PasswordRuleResult[]) {
+export function updatePasswordRules(results: PasswordRuleResult[]) {
   results.forEach(result => {
     const el = document.getElementById(result.id);
 
