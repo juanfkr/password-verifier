@@ -1,5 +1,5 @@
 // imports
-import { createComponent } from "./Hint.js";
+import { createComponent } from "../services/Hint.js";
 
 // components
 const FORM_INPUT = document.querySelector("#inputName") as HTMLInputElement;
