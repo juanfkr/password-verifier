@@ -1,7 +1,7 @@
 // imports
-import { createComponent } from "./Hint.js";
-import { validatePassword, PASSWORD_RULES } from "../model/Rules.js";
-import { updateUI } from "./HintUi.js";
+import { createComponent } from "./password-hint.js";
+import { validatePassword, PASSWORD_RULES } from "../model/password-rules.js";
+import { updateUI } from "./password-hint-ui.js";
 
 // components
 const FORM_INPUT = document.querySelector("#inputName") as HTMLInputElement;
